@@ -1,4 +1,5 @@
 [![Go](https://github.com/manuelarte/GoTime/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/GoTime/actions/workflows/go.yml)
+![coverage](https://raw.githubusercontent.com/manuelarte/GoTime/badges/.badges/main/coverage.svg)
 # GoTime
 
 ## Introduction
