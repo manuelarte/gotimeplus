@@ -25,6 +25,11 @@ threshold:
   # The minimum total coverage project should have
   total: 90
 
+exclude:
+  # Exclude files or packages matching their paths
+  paths:
+    - ^examples     # exclude folder `examples`
+
 # NOTES:
 # - symbol `/` in all path regexps will be replaced by current OS file path separator
 #   to properly work on Windows
