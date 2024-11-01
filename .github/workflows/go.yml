@@ -41,7 +41,7 @@ jobs:
         local-prefix: github.com/org/project
         threshold-file: 80
         threshold-package: 80
-        threshold-total: 95
+        threshold-total: 80
         ## when token is not specified (value '') this feature is turned off
         ## in this example badge is created and committed only for main branch
         git-token: ${{ github.ref_name == 'main' && secrets.GITHUB_TOKEN || '' }}
