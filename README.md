@@ -24,7 +24,9 @@ t2 _________|
 tp ____|‾‾‾‾|___
 ```
 
-It also provides a function `Overlaps` to check whether the two time periods overlaps, and what's the overlapping period
+If start time or end time are zero, it means no limit.  
+
+The struct also provides a function `Overlaps` to check whether two time periods overlaps, and what is the overlapping period
 
 e.g.
 
