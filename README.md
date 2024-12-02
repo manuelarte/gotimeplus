@@ -52,7 +52,7 @@ tp  ____|‾‾‾‾|_________...
 
 ## Full Example
 
-```
+```go
 start1 := time.Date(2024, 12, 1, 0, 0, 0, 0, time.UTC)
 end1 := time.Date(2024, 12, 10, 0, 0, 0, 0, time.UTC)
 tp1, _ := NewTimePeriod(start1, end1)
