@@ -18,8 +18,8 @@ Create a `TimePeriod` instance by specifying a start time and an end time:
 
 > tp, err := NewTimePeriod(startTime, endTime)
 
-+ `startTime`: The beginning of the time period. Use time.Time{} for no lower limit.
-+ `endTime`: The end of the time period. Use time.Time{} for no upper limit.
++ `startTime`: The beginning of the time period. Use `time.Time{}` for no lower limit.
++ `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
 Returns:
 + `tp`: The resulting TimePeriod.
 + `err`: An error if the inputs are invalid.
