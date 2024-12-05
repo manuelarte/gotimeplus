@@ -1,12 +1,12 @@
-[![Go](https://github.com/manuelarte/GoTime/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/GoTime/actions/workflows/go.yml)
-![coverage](https://raw.githubusercontent.com/manuelarte/GoTime/badges/.badges/main/coverage.svg)
+[![Go](https://github.com/manuelarte/gotime/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/GoTime/actions/workflows/go.yml)
+![coverage](https://raw.githubusercontent.com/manuelarte/gotime/badges/.badges/main/coverage.svg)
 # 🕐 GoTime
 
 GoTime is a Go library for working with time periods, enabling easy creation and overlap calculation. GoTime simplifies the creation and manipulation of time periods, allowing you to easily define, compare, and compute overlaps between time intervals.
 
 ## 📝 How to install it
 
-> go get github.com/manuelarte/GoTime
+> go get github.com/manuelarte/gotime
 
 ## ✏️ Introduction
 

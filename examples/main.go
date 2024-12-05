@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/manuelarte/GoTime/pkg/timeperiod"
+	"github.com/manuelarte/gotime/pkg/timeperiod"
 	"time"
 )
 
