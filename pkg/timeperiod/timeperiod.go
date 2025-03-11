@@ -8,6 +8,14 @@ import (
 
 var ErrEndTimeBeforeStartTime = errors.New("end time before start time")
 
+// TimePeriod struct to track a Period of Time. It's composed of a StartTime and an EndTime
+// If StartTime is zero then it means the beginning of time
+// If EndTime is zero then it means no limit.
+type TimePeriod struct {
+	startTime time.Time
+	endTime   time.Time
+}
+
 // NewTimePeriod Creates new time period based on a start time and an end time
 // Returns either the time period of an error is the end time is before the start time.
 func NewTimePeriod(startTime time.Time, endTime time.Time) (TimePeriod, error) {
@@ -21,12 +29,12 @@ func NewTimePeriod(startTime time.Time, endTime time.Time) (TimePeriod, error) {
 	}, nil
 }
 
-// TimePeriod struct to track a Period of Time. It's composed of a StartTime and an EndTime
-// If StartTime is zero then it means the beginning of time
-// If EndTime is zero then it means no limit.
-type TimePeriod struct {
-	startTime time.Time
-	endTime   time.Time
+func MustTimePeriod(startTime time.Time, endTime time.Time) TimePeriod {
+	period, err := NewTimePeriod(startTime, endTime)
+	if err != nil {
+		panic(err)
+	}
+	return period
 }
 
 func (tp TimePeriod) GetStartTime() time.Time {
@@ -47,7 +55,7 @@ func (tp TimePeriod) GetDuration() time.Duration {
 	return tp.endTime.Sub(tp.startTime)
 }
 
-// Overlaps Returns the overlap period between the two time periods, and the boolean wheter it overlaps or not
+// Overlaps Returns the overlap period between the two time periods, and the boolean wheter it overlaps or not.
 func (tp TimePeriod) Overlaps(other TimePeriod) (TimePeriod, bool) {
 	if tp.doesIntersect(other) {
 		return tp.intersect(other), true
@@ -88,7 +96,8 @@ func (tp TimePeriod) intersect(comparePeriod TimePeriod) TimePeriod {
 	if tp.startTime.UTC().Before(comparePeriod.GetStartTime().UTC()) {
 		intersectPeriod.startTime = comparePeriod.GetStartTime()
 	}
-	if !comparePeriod.GetEndTime().IsZero() && !tp.endTime.IsZero() && tp.endTime.UTC().After(comparePeriod.GetEndTime().UTC()) {
+	if !comparePeriod.GetEndTime().IsZero() && !tp.endTime.IsZero() &&
+		tp.endTime.UTC().After(comparePeriod.GetEndTime().UTC()) {
 		intersectPeriod.endTime = comparePeriod.GetEndTime()
 	}
 	if tp.endTime.IsZero() {

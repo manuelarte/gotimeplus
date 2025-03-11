@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/manuelarte/gotime/pkg/timeperiod"
 	"time"
+
+	"github.com/manuelarte/gotime/pkg/timeperiod"
 )
 
 const timeFormat = "2006-January-02"
