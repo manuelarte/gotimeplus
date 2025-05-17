@@ -55,7 +55,7 @@ func (tp TimePeriod) GetDuration() time.Duration {
 	return tp.endTime.Sub(tp.startTime)
 }
 
-// Overlaps Returns the overlap period between the two time periods, and the boolean wheter it overlaps or not.
+// Overlaps Returns the overlap period between the two time periods, and the boolean whether it overlaps or not.
 func (tp TimePeriod) Overlaps(other TimePeriod) (TimePeriod, bool) {
 	if tp.doesIntersect(other) {
 		return tp.intersect(other), true
