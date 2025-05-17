@@ -1,6 +1,7 @@
+# 🕐 GoTime
+
 [![Go](https://github.com/manuelarte/gotime/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/GoTime/actions/workflows/go.yml)
 ![coverage](https://raw.githubusercontent.com/manuelarte/gotime/badges/.badges/main/coverage.svg)
-# 🕐 GoTime
 
 GoTime is a Go library for working with time periods, enabling easy creation and overlap calculation. GoTime simplifies the creation and manipulation of time periods, allowing you to easily define, compare, and compute overlaps between time intervals.
 
@@ -20,6 +21,7 @@ Create a `TimePeriod` instance by specifying a start time and an end time:
 
 + `startTime`: The beginning of the time period. Use `time.Time{}` for no lower limit.
 + `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
+
 Returns:
 + `tp`: The resulting TimePeriod.
 + `err`: An error if the inputs are invalid.
@@ -69,6 +71,3 @@ fmt.Println("Overlap Period:", overlapPeriod)
 ## 📂 Examples
 
 Refer to the [examples](./examples) directory for usage examples.
-
-## 📜 License
-This project is licensed under the MIT License.
