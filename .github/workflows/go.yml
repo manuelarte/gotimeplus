@@ -16,36 +16,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.23'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.23'
 
-    - name: Build
-      run: go build -v ./...
+      - name: Build
+        run: go build -v ./...
 
-    - name: Test
-      run: go test -v ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
+      - name: Test
+        run: go test -v ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
 
-    - name: check test coverage
-      uses: vladopajic/go-test-coverage@v2
-      with:
-        # Configure action using config file (option 1)
-        config: ./.github/.testcoverage.yml
+      - name: check test coverage
+        uses: vladopajic/go-test-coverage@v2
+        with:
+          # Configure action using config file (option 1)
+          config: ./.github/.testcoverage.yml
 
-        # Configure action by specifying input parameters individually (option 2).
-        # If you are using config file (option 1) you shouldn't use these parameters, however
-        # specifing these action parameters will override appropriate config values.
-        profile: cover.out
-        local-prefix: github.com/org/project
-        threshold-file: 80
-        threshold-package: 80
-        threshold-total: 80
-        ## when token is not specified (value '') this feature is turned off
-        ## in this example badge is created and committed only for main branch
-        git-token: ${{ github.ref_name == 'main' && secrets.GITHUB_TOKEN || '' }}
-        ## name of branch where badges are stored
-        ## ideally this should be orphan branch (see below how to create this branch)
-        git-branch: badges
+          # Configure action by specifying input parameters individually (option 2).
+          # If you are using config file (option 1) you shouldn't use these parameters, however
+          # specifing these action parameters will override appropriate config values.
+          profile: cover.out
+          local-prefix: github.com/org/project
+          threshold-file: 80
+          threshold-package: 80
+          threshold-total: 80
+          ## when token is not specified (value '') this feature is turned off
+          ## in this example badge is created and committed only for main branch
+          git-token: ${{ github.ref_name == 'main' && secrets.GITHUB_TOKEN || '' }}
+          ## name of branch where badges are stored
+          ## ideally this should be orphan branch (see below how to create this branch)
+          git-branch: badges

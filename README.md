@@ -23,12 +23,13 @@ Create a `TimePeriod` instance by specifying a start time and an end time:
 + `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
 
 Returns:
+
 + `tp`: The resulting TimePeriod.
 + `err`: An error if the inputs are invalid.
 
 The time period is built based on the overlapping period between the two dates.
 
-```
+```bash
 Input Times
 time1 ____|________...
 time2 _________|___...
@@ -44,7 +45,7 @@ The struct also provides a function `Overlaps`. This method checks whether two t
 
 e.g.
 
-```
+```bash
 Input Time Periods
 tp1 ____|‾‾‾‾‾‾‾‾‾‾‾‾‾‾...
 tp2 _________|‾‾‾‾‾‾|__...

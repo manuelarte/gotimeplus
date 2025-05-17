@@ -1,0 +1,9 @@
+#!/bin/sh
+
+go build -v ./...
+go test -v ./...
+
+markdownlint .
+yamllint .
+codespell .
+                                          
