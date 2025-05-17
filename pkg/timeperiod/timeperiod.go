@@ -72,11 +72,11 @@ func (tp TimePeriod) doesIntersect(comparePeriod TimePeriod) bool {
 		return false
 	}
 	if !tp.endTime.IsZero() && (tp.endTime.UTC().Before(comparePeriod.GetStartTime().UTC()) ||
-		tp.endTime.UTC() == comparePeriod.GetStartTime().UTC()) {
+		tp.endTime.UTC().Equal(comparePeriod.GetStartTime().UTC())) {
 		return false
 	}
 	if !comparePeriod.GetEndTime().IsZero() && (tp.startTime.UTC().After(comparePeriod.GetEndTime().UTC()) ||
-		tp.startTime.UTC() == comparePeriod.GetEndTime().UTC()) {
+		tp.startTime.UTC().Equal(comparePeriod.GetEndTime().UTC())) {
 		return false
 	}
 
