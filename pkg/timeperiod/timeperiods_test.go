@@ -51,7 +51,6 @@ func TestTimePeriod_GetDuration(t *testing.T) {
 		},
 	}
 	for name, test := range tests {
-		name, test := name, test
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			actual := test.timePeriod.GetDuration()
@@ -315,7 +314,6 @@ func TestTimePeriod_DoesIntersect(t *testing.T) {
 	}
 
 	for name, test := range tests {
-		name, test := name, test
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			_, actualResult := test.basePeriod.Overlaps(test.comparePeriod)
@@ -644,7 +642,6 @@ func TestTimePeriod_Intersect(t *testing.T) {
 	}
 
 	for name, test := range tests {
-		name, test := name, test
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			actualResult, _ := test.basePeriod.Overlaps(test.comparePeriod)
@@ -694,7 +691,6 @@ func TestTimePeriod_NewTimePeriod(t *testing.T) {
 		},
 	}
 	for name, test := range tests {
-		name, test := name, test
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			_, err := timeperiod.NewTimePeriod(test.startTime, test.endTime)
