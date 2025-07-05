@@ -9,10 +9,9 @@ import (
 var ErrEndTimeBeforeStartTime = errors.New("end time before start time")
 
 var (
-
 	_ TimePeriod = new(startTimeEndTimePeriod)
+	//nolint:gochecknoglobals // Infinite time period constant.
 	Infinite TimePeriod = startTimeEndTimePeriod{}
-
 )
 
 type (
