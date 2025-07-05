@@ -1,17 +1,19 @@
-# 🕐 GoTime
+# 🕐 GoTime Plus(+)
 
-[![Go](https://github.com/manuelarte/gotime/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/GoTime/actions/workflows/go.yml)
-![coverage](https://raw.githubusercontent.com/manuelarte/gotime/badges/.badges/main/coverage.svg)
+[![Go](https://github.com/manuelarte/gotimeplus/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/gotimeplus/actions/workflows/go.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/manuelarte/gotimeplus)](https://goreportcard.com/report/github.com/manuelarte/gotimeplus)
+![coverage](https://raw.githubusercontent.com/manuelarte/gotimeplus/badges/.badges/main/coverage.svg)
+![version](https://img.shields.io/github/v/release/manuelarte/gotimeplus)
 
-GoTime is a Go library for working with time periods, enabling easy creation and overlap calculation. GoTime simplifies the creation and manipulation of time periods, allowing you to easily define, compare, and compute overlaps between time intervals.
+GoTime Plus is a Go library that adds some missing functionality to the standard `time.Time` Go package.
 
-## 📝 How to install it
+## ⬇️ How to install it
 
-> go get github.com/manuelarte/gotime
+> go get github.com/manuelarte/gotime@latest
 
-## ✏️ Introduction
+## 🚀 Features
 
-GoTime contains the following utility struct
+GoTime Plus contains the following features:
 
 ### TimePeriod
 
@@ -24,10 +26,10 @@ Create a `TimePeriod` instance by specifying a start time and an end time:
 
 Returns:
 
-+ `tp`: The resulting TimePeriod.
++ `tp`: The resulting `TimePeriod`.
 + `err`: An error if the inputs are invalid.
 
-The time period is built based on the overlapping period between the two dates.
+The `TimePeriod` is built based on the overlapping period between the two dates.
 
 ```bash
 Input Times
@@ -37,13 +39,13 @@ Resulting Time Period
 tp    ____|‾‾‾‾|___...
 ```
 
-Passing a zero value for `startTime` or `endTime` indicates an unbounded period on that side.
+> [!WARNING]  
+> Passing a zero value for `startTime` or `endTime` indicates an unbounded period on that side.
 
 ---
 
-The struct also provides a function `Overlaps`. This method checks whether two time periods overlap and, if so, returns the overlapping period.
-
-e.g.
+The struct also provides a function `Overlaps`. This method checks whether two time periods overlap.
+If so, returns the overlapping period, e.g.:
 
 ```bash
 Input Time Periods
@@ -51,22 +53,6 @@ tp1 ____|‾‾‾‾‾‾‾‾‾‾‾‾‾‾...
 tp2 _________|‾‾‾‾‾‾|__...
 Resulting Overlap
 tp  ____|‾‾‾‾|_________...
-```
-
-## Full Example
-
-```go
-start1 := time.Date(2024, 12, 1, 0, 0, 0, 0, time.UTC)
-end1 := time.Date(2024, 12, 10, 0, 0, 0, 0, time.UTC)
-tp1, _ := NewTimePeriod(start1, end1)
-
-start2 := time.Date(2024, 12, 5, 0, 0, 0, 0, time.UTC)
-end2 := time.Date(2024, 12, 15, 0, 0, 0, 0, time.UTC)
-tp2, _ := NewTimePeriod(start2, end2)
-
-overlapExists, overlapPeriod := tp1.Overlaps(tp2)
-fmt.Println("Overlap Exists:", overlapExists)
-fmt.Println("Overlap Period:", overlapPeriod)
 ```
 
 ## 📂 Examples

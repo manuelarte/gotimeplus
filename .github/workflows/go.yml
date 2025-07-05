@@ -1,33 +1,32 @@
 ---
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
 name: Go
+permissions:
+  contents: read
 
 on:
   workflow_dispatch:
   push:
-    branches: ["main", "dev"]
-  pull_request:
     branches: ["main"]
+  pull_request:
 
 jobs:
-
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        go: [oldstable, stable]
+        os: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
-          go-version: '1.23'
+          go-version: ${{ matrix.go }}
 
       - name: Build
         run: go build -v ./...
 
       - name: Test
-        run: go test -v ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
+        run: go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
 
       - name: check test coverage
         uses: vladopajic/go-test-coverage@v2
