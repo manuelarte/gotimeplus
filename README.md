@@ -7,9 +7,11 @@
 
 GoTime Plus is a Go library that adds some missing functionality to the standard `time.Time` Go package.
 
-## ⬇️ How to install it
+## ⬇️ How to use it
 
-> go get github.com/manuelarte/gotime@latest
+```bash
+go get github.com/manuelarte/gotime@latest
+``` 
 
 ## 🚀 Features
 
