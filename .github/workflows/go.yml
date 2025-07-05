@@ -6,7 +6,7 @@ permissions:
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
 
 jobs:
@@ -30,6 +30,7 @@ jobs:
 
       - name: check test coverage
         uses: vladopajic/go-test-coverage@v2
+        if: matrix.os == 'ubuntu-latest'
         with:
           # Configure action using config file (option 1)
           config: ./.github/.testcoverage.yml
