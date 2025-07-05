@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/manuelarte/gotime/pkg/timeperiod"
+	"github.com/manuelarte/gotimeplus/timeperiod"
 )
 
 const timeFormat = "2006-January-02"
@@ -31,4 +31,6 @@ func main() {
 	if ok {
 		fmt.Printf("OverlapPeriod:\t%s\t - %s\n", overlapPeriod.GetStartTime().Format(timeFormat), overlapPeriod.GetEndTime().Format(timeFormat))
 	}
+
+	println(timeperiod.Infinite)
 }

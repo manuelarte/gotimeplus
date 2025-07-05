@@ -3,7 +3,8 @@
 go build -v ./...
 go test -v ./...
 
-markdownlint .
+markdownlint-cli2 ./**/*.md
 yamllint .
 codespell .
-                                          
+typos .
+

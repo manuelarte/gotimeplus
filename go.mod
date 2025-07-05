@@ -1,3 +1,3 @@
-module github.com/manuelarte/gotime
+module github.com/manuelarte/gotimeplus
 
 go 1.23
