@@ -30,7 +30,7 @@ jobs:
 
       - name: check test coverage
         uses: vladopajic/go-test-coverage@v2
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-latest' && matrix.go == 'stable'
         with:
           # Configure action using config file (option 1)
           config: ./.github/.testcoverage.yml
@@ -39,7 +39,7 @@ jobs:
           # If you are using config file (option 1) you shouldn't use these parameters, however
           # specifying these action parameters will override appropriate config values.
           profile: cover.out
-          local-prefix: github.com/org/project
+          local-prefix: github.com/manuelarte/gotimeplus
           threshold-file: 80
           threshold-package: 80
           threshold-total: 80
