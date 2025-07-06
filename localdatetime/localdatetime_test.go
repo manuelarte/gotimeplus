@@ -16,13 +16,13 @@ func TestLocalDateTime_Equal(t *testing.T) {
 		expected      bool
 	}{
 		"same local date time": {
-			localDateTime: NewLocalDateTime(
-				localdate.NewLocalDate(2000, 1, 1),
-				localtime.NewLocalTime(0, 0, 0, 0),
+			localDateTime: New(
+				localdate.New(2000, 1, 1),
+				localtime.New(0, 0, 0, 0),
 			),
-			other: NewLocalDateTime(
-				localdate.NewLocalDate(2000, 1, 1),
-				localtime.NewLocalTime(0, 0, 0, 0),
+			other: New(
+				localdate.New(2000, 1, 1),
+				localtime.New(0, 0, 0, 0),
 			),
 			expected: true,
 		},

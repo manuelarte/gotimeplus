@@ -28,8 +28,8 @@ type (
 	}
 )
 
-// NewLocalDate New LocalDate from year, month and day.
-func NewLocalDate(year int, month time.Month, day int) LocalDate {
+// New LocalDate from year, month and day.
+func New(year int, month time.Month, day int) LocalDate {
 	return &localDate{
 		year:  year,
 		month: month,
@@ -39,7 +39,7 @@ func NewLocalDate(year int, month time.Month, day int) LocalDate {
 
 // FromTime converts time.Time to LocalDate.
 func FromTime(t time.Time) LocalDate {
-	return NewLocalDate(t.Year(), t.Month(), t.Day())
+	return New(t.Year(), t.Month(), t.Day())
 }
 
 func (ld localDate) After(other LocalDate) bool {

@@ -31,8 +31,8 @@ type (
 	}
 )
 
-// NewLocalTime New LocalTime from hours, minutes, seconds and nanoseconds.
-func NewLocalTime(hour, minutes, sec, nsec int) LocalTime {
+// New LocalTime from hours, minutes, seconds and nanoseconds.
+func New(hour, minutes, sec, nsec int) LocalTime {
 	return &localTime{
 		hour: hour,
 		min:  minutes,
@@ -42,19 +42,19 @@ func NewLocalTime(hour, minutes, sec, nsec int) LocalTime {
 }
 
 func (lt localTime) After(other LocalTime) bool {
-	ld := localdate.NewLocalDate(2009, time.November, 10)
+	ld := localdate.New(2009, time.November, 10)
 
 	return lt.ToTime(ld, time.UTC).After(other.ToTime(ld, time.UTC))
 }
 
 func (lt localTime) Before(other LocalTime) bool {
-	ld := localdate.NewLocalDate(2009, time.November, 10)
+	ld := localdate.New(2009, time.November, 10)
 
 	return lt.ToTime(ld, time.UTC).Before(other.ToTime(ld, time.UTC))
 }
 
 func (lt localTime) Equal(other LocalTime) bool {
-	ld := localdate.NewLocalDate(2009, time.November, 10)
+	ld := localdate.New(2009, time.November, 10)
 
 	return lt.ToTime(ld, time.UTC).Equal(other.ToTime(ld, time.UTC))
 }
