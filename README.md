@@ -1,4 +1,4 @@
-# 🕐 GoTime Plus(+)
+# 🕐GoTime Plus(+)
 
 [![Go](https://github.com/manuelarte/gotimeplus/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/gotimeplus/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/manuelarte/gotimeplus)](https://goreportcard.com/report/github.com/manuelarte/gotimeplus)
@@ -7,29 +7,29 @@
 
 GoTime Plus is a Go library that adds some missing functionality to the standard `time.Time` Go package.
 
-- [🕐 GoTime Plus(+)](#-gotime-plus)
-    * [⬇️ How to use it](#-how-to-use-it)
-    * [🚀 Features](#-features)
-        + [LocalDate](#localdate)
-        + [LocalTime](#localtime)
-        + [LocalDateTime](#localdatetime)
-        + [TimePeriod](#timeperiod)
-    * [📂 Examples](#-examples)
+- 🕐[GoTime Plus(+)](#gotime-plus)
+  - ⬇️[How to use it](#how-to-use-it)
+  - 🚀[Features](#features)
+    - [LocalDate](#localdate)
+    - [LocalTime](#localtime)
+    - [LocalDateTime](#localdatetime)
+    - [TimePeriod](#timeperiod)
+  - 📂[Examples](#examples)
 
-## ⬇️ How to use it
+## ⬇️How to use it
 
 ```bash
 go get github.com/manuelarte/gotime@latest
-``` 
+```
 
-## 🚀 Features
+## 🚀Features
 
 GoTime Plus contains the following features:
 
 ### LocalDate
 
 Same concept as java [LocalDate][javaLocalDate], this struct represents a date, often viewed as year-month-day.
-This struct does not represent a time or time-zone. Instead, it is a description of the date, as used for birthdays. 
+This struct does not represent a time or time-zone. Instead, it is a description of the date, as used for birthdays.
 It cannot represent a `time.Time` without additional information such a time-zone.
 
 e.g.:
@@ -68,13 +68,13 @@ Create a `TimePeriod` instance by specifying a start time and an end time:
 
 > tp, err := NewTimePeriod(startTime, endTime)
 
-+ `startTime`: The beginning of the time period. Use `time.Time{}` for no lower limit.
-+ `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
+- `startTime`: The beginning of the time period. Use `time.Time{}` for no lower limit.
+- `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
 
 Returns:
 
-+ `tp`: The resulting `TimePeriod`.
-+ `err`: An error if the inputs are invalid.
+- `tp`: The resulting `TimePeriod`.
+- `err`: An error if the inputs are invalid.
 
 The `TimePeriod` is built based on the overlapping period between the two dates.
 
@@ -102,7 +102,7 @@ Resulting Overlap
 tp  ____|‾‾‾‾|_________...
 ```
 
-## 📂 Examples
+## 📂Examples
 
 Refer to the [examples](./examples) directory for usage examples.
 

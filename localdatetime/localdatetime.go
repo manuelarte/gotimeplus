@@ -29,8 +29,12 @@ type (
 	}
 )
 
-// New LocalDateTime from localDate and localTime.
-func New(ld localdate.LocalDate, lt localtime.LocalTime) LocalDateTime {
+func New(year int, month time.Month, day, hour, minutes, sec, nsec int) LocalDateTime {
+	return NewFrom(localdate.New(year, month, day), localtime.New(hour, minutes, sec, nsec))
+}
+
+// NewFrom LocalDateTime from localDate and localTime.
+func NewFrom(ld localdate.LocalDate, lt localtime.LocalTime) LocalDateTime {
 	return &localDateTime{
 		ld: ld,
 		lt: lt,
@@ -39,7 +43,7 @@ func New(ld localdate.LocalDate, lt localtime.LocalTime) LocalDateTime {
 
 // FromTime converts time.Time to LocalDate.
 func FromTime(t time.Time) LocalDateTime {
-	return New(
+	return NewFrom(
 		localdate.FromTime(t),
 		localtime.New(t.Hour(), t.Minute(), t.Second(), t.Nanosecond()),
 	)
