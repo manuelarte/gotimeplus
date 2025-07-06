@@ -1,9 +1,10 @@
 package localtime
 
 import (
-	"github.com/manuelarte/gotimeplus/localdate"
 	"testing"
 	"time"
+
+	"github.com/manuelarte/gotimeplus/localdate"
 )
 
 func TestLocalTime_Before(t *testing.T) {
@@ -33,6 +34,7 @@ func TestLocalTime_Before(t *testing.T) {
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
+
 			if got := test.a.Before(test.b); got != test.expect {
 				t.Errorf("Before: expected %v, got %v", test.expect, got)
 			}
@@ -67,6 +69,7 @@ func TestLocalTime_After(t *testing.T) {
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
+
 			if got := test.a.After(test.b); got != test.expect {
 				t.Errorf("After: expected %v, got %v", test.expect, got)
 			}
@@ -101,6 +104,7 @@ func TestLocalTime_Equal(t *testing.T) {
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
+
 			if got := test.a.Equal(test.b); got != test.expect {
 				t.Errorf("Equal: expected %v, got %v", test.expect, got)
 			}
