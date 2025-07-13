@@ -90,6 +90,8 @@ linters:
       exclude:
         - ^os/exec.Cmd$
         - ^reflect.StructField$
+    funcorder:
+      alphabetical: true
     funlen:
       lines: -1
       statements: 50

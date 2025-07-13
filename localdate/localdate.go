@@ -46,12 +46,12 @@ func (ld localDate) After(other LocalDate) bool {
 	return ld.ToTime(time.UTC).After(other.ToTime(time.UTC))
 }
 
-func (ld localDate) Day() int {
-	return ld.day
-}
-
 func (ld localDate) Before(other LocalDate) bool {
 	return ld.ToTime(time.UTC).Before(other.ToTime(time.UTC))
+}
+
+func (ld localDate) Day() int {
+	return ld.day
 }
 
 func (ld localDate) Equal(other LocalDate) bool {

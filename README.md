@@ -66,7 +66,7 @@ newYear2025 := localdatetime.New(localdate.New(2025, 1, 1), localtime.New(0, 0, 
 
 Create a `TimePeriod` instance by specifying a start time and an end time:
 
-> tp, err := NewTimePeriod(startTime, endTime)
+> tp, err := timeperiod.New(startTime, endTime)
 
 - `startTime`: The beginning of the time period. Use `time.Time{}` for no lower limit.
 - `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
