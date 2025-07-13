@@ -20,11 +20,11 @@ type (
 	// If StartTime is zero then it means the beginning of time.
 	// If EndTime is zero then it means end of time.
 	TimePeriod interface {
-		GetStartTime() time.Time
-		GetEndTime() time.Time
+		StartTime() time.Time
+		EndTime() time.Time
 
-		// GetDuration Get the duration.
-		GetDuration() time.Duration
+		// Duration Get the duration.
+		Duration() time.Duration
 		Overlaps(other TimePeriod) (TimePeriod, bool)
 	}
 
@@ -34,9 +34,9 @@ type (
 	}
 )
 
-// NewTimePeriod Creates new time period based on a start time and an end time
+// New Creates new time period based on a start time and an end time
 // Returns either the time period of an error is the end time is before the start time.
-func NewTimePeriod(startTime, endTime time.Time) (TimePeriod, error) {
+func New(startTime, endTime time.Time) (TimePeriod, error) {
 	if (!startTime.IsZero() && !endTime.IsZero()) && endTime.Before(startTime) {
 		return startTimeEndTimePeriod{}, ErrEndTimeBeforeStartTime
 	}
@@ -47,10 +47,10 @@ func NewTimePeriod(startTime, endTime time.Time) (TimePeriod, error) {
 	}, nil
 }
 
-// MustTimePeriod Creates new time period based on a start time and an end time
+// Must Creates new time period based on a start time and an end time
 // Panics if end time is before the start time.
-func MustTimePeriod(startTime, endTime time.Time) TimePeriod {
-	period, err := NewTimePeriod(startTime, endTime)
+func Must(startTime, endTime time.Time) TimePeriod {
+	period, err := New(startTime, endTime)
 	if err != nil {
 		panic(err)
 	}
@@ -58,21 +58,17 @@ func MustTimePeriod(startTime, endTime time.Time) TimePeriod {
 	return period
 }
 
-func (tp startTimeEndTimePeriod) GetStartTime() time.Time {
-	return tp.startTime
-}
-
-func (tp startTimeEndTimePeriod) GetEndTime() time.Time {
-	return tp.endTime
-}
-
-func (tp startTimeEndTimePeriod) GetDuration() time.Duration {
+func (tp startTimeEndTimePeriod) Duration() time.Duration {
 	if tp.startTime.IsZero() || tp.endTime.IsZero() {
 		// return maxDuration
 		return 1<<63 - 1
 	}
 
 	return tp.endTime.Sub(tp.startTime)
+}
+
+func (tp startTimeEndTimePeriod) EndTime() time.Time {
+	return tp.endTime
 }
 
 // Overlaps Returns the overlap period between the two time periods, and the boolean whether it overlaps or not.
@@ -84,22 +80,26 @@ func (tp startTimeEndTimePeriod) Overlaps(other TimePeriod) (TimePeriod, bool) {
 	return startTimeEndTimePeriod{startTime: time.Time{}, endTime: time.Time{}}, false
 }
 
+func (tp startTimeEndTimePeriod) StartTime() time.Time {
+	return tp.startTime
+}
+
 func (tp startTimeEndTimePeriod) doesIntersect(comparePeriod TimePeriod) bool {
-	if tp.endTime.IsZero() && comparePeriod.GetEndTime().IsZero() {
+	if tp.endTime.IsZero() && comparePeriod.EndTime().IsZero() {
 		return true
 	}
 
-	if comparePeriod.GetEndTime().IsZero() && comparePeriod.GetStartTime().UTC().After(tp.endTime.UTC()) {
+	if comparePeriod.EndTime().IsZero() && comparePeriod.StartTime().UTC().After(tp.endTime.UTC()) {
 		return false
 	}
 
-	if !tp.endTime.IsZero() && (tp.endTime.UTC().Before(comparePeriod.GetStartTime().UTC()) ||
-		tp.endTime.UTC().Equal(comparePeriod.GetStartTime().UTC())) {
+	if !tp.endTime.IsZero() && (tp.endTime.UTC().Before(comparePeriod.StartTime().UTC()) ||
+		tp.endTime.UTC().Equal(comparePeriod.StartTime().UTC())) {
 		return false
 	}
 
-	if !comparePeriod.GetEndTime().IsZero() && (tp.startTime.UTC().After(comparePeriod.GetEndTime().UTC()) ||
-		tp.startTime.UTC().Equal(comparePeriod.GetEndTime().UTC())) {
+	if !comparePeriod.EndTime().IsZero() && (tp.startTime.UTC().After(comparePeriod.EndTime().UTC()) ||
+		tp.startTime.UTC().Equal(comparePeriod.EndTime().UTC())) {
 		return false
 	}
 
@@ -116,17 +116,17 @@ func (tp startTimeEndTimePeriod) intersect(comparePeriod TimePeriod) TimePeriod 
 
 	intersectPeriod := tp
 
-	if tp.startTime.UTC().Before(comparePeriod.GetStartTime().UTC()) {
-		intersectPeriod.startTime = comparePeriod.GetStartTime()
+	if tp.startTime.UTC().Before(comparePeriod.StartTime().UTC()) {
+		intersectPeriod.startTime = comparePeriod.StartTime()
 	}
 
-	if !comparePeriod.GetEndTime().IsZero() && !tp.endTime.IsZero() &&
-		tp.endTime.UTC().After(comparePeriod.GetEndTime().UTC()) {
-		intersectPeriod.endTime = comparePeriod.GetEndTime()
+	if !comparePeriod.EndTime().IsZero() && !tp.endTime.IsZero() &&
+		tp.endTime.UTC().After(comparePeriod.EndTime().UTC()) {
+		intersectPeriod.endTime = comparePeriod.EndTime()
 	}
 
 	if tp.endTime.IsZero() {
-		intersectPeriod.endTime = comparePeriod.GetEndTime()
+		intersectPeriod.endTime = comparePeriod.EndTime()
 	}
 
 	return intersectPeriod

@@ -20,3 +20,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: go
           skip-labeling: true
+          config-file: ".release-please-config.json"
