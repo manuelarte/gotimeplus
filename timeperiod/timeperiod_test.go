@@ -753,9 +753,9 @@ func TestTimePeriod_Must(t *testing.T) {
 					if !test.expectedPanic {
 						t.Errorf("Panic not expected")
 					}
-
 				}
 			}()
+
 			t.Parallel()
 
 			_ = Must(test.startTime, test.endTime)
