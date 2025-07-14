@@ -19,7 +19,7 @@ GoTime Plus is a Go library that adds some missing functionality to the standard
 ## ⬇️How to use it
 
 ```bash
-go get github.com/manuelarte/gotime@latest
+go get github.com/manuelarte/gotimeplus@latest
 ```
 
 ## 🚀Features
