@@ -1,4 +1,5 @@
-// Package timeperiod provides TimePeriod comparing different time periods
+// Package timeperiod provides TimePeriod comparing different time periods.
+// Same concept as https://docs.oracle.com/javase/8/docs/api/java/time/Period.html.
 package timeperiod
 
 import (
@@ -10,21 +11,24 @@ var ErrEndTimeBeforeStartTime = errors.New("end time before start time")
 
 var (
 	_ TimePeriod = new(startTimeEndTimePeriod)
-	//nolint:gochecknoglobals // Infinite time period constant.
+
+	// Infinite time period constant.
+	//nolint:gochecknoglobals // global to improve readability.
 	Infinite TimePeriod = startTimeEndTimePeriod{}
 )
 
 type (
 
 	// TimePeriod to track a Period of Time. It's composed of a StartTime and an EndTime
-	// If StartTime is zero then it means the beginning of time.
-	// If EndTime is zero then it means end of time.
+	// If StartTime is zero, then it means the beginning of time.
+	// If EndTime is zero, then it means the end of time.
 	TimePeriod interface {
 		StartTime() time.Time
 		EndTime() time.Time
 
-		// Duration Get the duration.
+		// Duration Returns the duration of this period.
 		Duration() time.Duration
+		// Overlaps Returns the overlap period between the two time periods, and whether it overlaps or not.
 		Overlaps(other TimePeriod) (TimePeriod, bool)
 	}
 
@@ -34,7 +38,7 @@ type (
 	}
 )
 
-// New Creates new time period based on a start time and an end time
+// New Creates a new time period based on a start time and an end time
 // Returns either the time period of an error is the end time is before the start time.
 func New(startTime, endTime time.Time) (TimePeriod, error) {
 	if (!startTime.IsZero() && !endTime.IsZero()) && endTime.Before(startTime) {
@@ -47,7 +51,7 @@ func New(startTime, endTime time.Time) (TimePeriod, error) {
 	}, nil
 }
 
-// Must Creates new time period based on a start time and an end time
+// Must Create a new time period based on a start time, and an end time
 // Panics if end time is before the start time.
 func Must(startTime, endTime time.Time) TimePeriod {
 	period, err := New(startTime, endTime)
@@ -58,6 +62,7 @@ func Must(startTime, endTime time.Time) TimePeriod {
 	return period
 }
 
+// Duration Returns the duration of this period.
 func (tp startTimeEndTimePeriod) Duration() time.Duration {
 	if tp.startTime.IsZero() || tp.endTime.IsZero() {
 		// return maxDuration
@@ -71,7 +76,7 @@ func (tp startTimeEndTimePeriod) EndTime() time.Time {
 	return tp.endTime
 }
 
-// Overlaps Returns the overlap period between the two time periods, and the boolean whether it overlaps or not.
+// Overlaps Returns the overlap period between the two time periods, and whether it overlaps or not.
 func (tp startTimeEndTimePeriod) Overlaps(other TimePeriod) (TimePeriod, bool) {
 	if tp.doesIntersect(other) {
 		return tp.intersect(other), true
