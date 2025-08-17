@@ -76,14 +76,15 @@ Returns:
 - `tp`: The resulting `TimePeriod`.
 - `err`: An error if the inputs are invalid.
 
-The `TimePeriod` is built based on the overlapping period between the two dates.
+> [!NOTE]  
+> The `TimePeriod` is built based on the overlapping period between the two dates.
 
 ```bash
 Input Times
-time1 ____|________...
-time2 _________|___...
+start time ____|________...
+end time   _________|___...
 Resulting Time Period
-tp    ____|‾‾‾‾|___...
+tp         ____|‾‾‾‾|___...
 ```
 
 > [!WARNING]  
