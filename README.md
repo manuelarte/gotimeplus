@@ -79,7 +79,7 @@ Returns:
 > [!NOTE]  
 > The `TimePeriod` is built based on the overlapping period between the two dates.
 
-```bash
+```text
 Input Times
 start time ____|________...
 end time   _________|___...
@@ -95,7 +95,7 @@ tp         ____|‾‾‾‾|___...
 The struct also provides a function `Overlaps`. This method checks whether two time periods overlap.
 If so, returns the overlapping period, e.g.:
 
-```bash
+```text
 Input Time Periods
 tp1 ____|‾‾‾‾‾‾‾‾‾‾‾‾‾‾...
 tp2 _________|‾‾‾‾‾‾|__...
