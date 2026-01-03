@@ -749,7 +749,7 @@ func TestMust(t *testing.T) {
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			defer func() {
-				if r := recover(); r != nil {
+				if recover() != nil {
 					if !test.expectedPanic {
 						t.Errorf("Panic not expected")
 					}
