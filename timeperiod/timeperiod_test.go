@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func TestTimePeriod_GetDuration(t *testing.T) {
+func TestGetDuration(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -62,7 +62,7 @@ func TestTimePeriod_GetDuration(t *testing.T) {
 	}
 }
 
-func TestTimePeriod_DoesIntersect(t *testing.T) {
+func TestDoesIntersect(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -326,7 +326,7 @@ func TestTimePeriod_DoesIntersect(t *testing.T) {
 	}
 }
 
-func TestTimePeriod_Intersect(t *testing.T) {
+func TestIntersect(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -656,7 +656,7 @@ func TestTimePeriod_Intersect(t *testing.T) {
 	}
 }
 
-func TestTimePeriod_New(t *testing.T) {
+func TestNew(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -707,7 +707,7 @@ func TestTimePeriod_New(t *testing.T) {
 	}
 }
 
-func TestTimePeriod_Must(t *testing.T) {
+func TestMust(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {

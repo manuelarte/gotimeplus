@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func TestLocalDate_After(t *testing.T) {
+func TestAfter(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -40,7 +40,7 @@ func TestLocalDate_After(t *testing.T) {
 	}
 }
 
-func TestLocalDate_Before(t *testing.T) {
+func TestBefore(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -75,7 +75,7 @@ func TestLocalDate_Before(t *testing.T) {
 	}
 }
 
-func TestLocalDate_Equal(t *testing.T) {
+func TestEqual(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
