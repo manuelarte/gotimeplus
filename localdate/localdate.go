@@ -1,4 +1,4 @@
-// Package localdatetime provides LocalDate, storing a date, timezone independent.
+// Package localdate provides LocalDate, storing a date, timezone independent.
 // Same concept as https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html.
 package localdate
 

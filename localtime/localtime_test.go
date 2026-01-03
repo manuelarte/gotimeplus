@@ -7,7 +7,7 @@ import (
 	"github.com/manuelarte/gotimeplus/localdate"
 )
 
-func TestLocalTime_Before(t *testing.T) {
+func TestBefore(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -42,7 +42,7 @@ func TestLocalTime_Before(t *testing.T) {
 	}
 }
 
-func TestLocalTime_After(t *testing.T) {
+func TestAfter(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -77,7 +77,7 @@ func TestLocalTime_After(t *testing.T) {
 	}
 }
 
-func TestLocalTime_Equal(t *testing.T) {
+func TestEqual(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -112,7 +112,7 @@ func TestLocalTime_Equal(t *testing.T) {
 	}
 }
 
-func TestLocalTime_ToTime(t *testing.T) {
+func TestToTime(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {

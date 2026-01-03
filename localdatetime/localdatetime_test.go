@@ -8,7 +8,7 @@ import (
 	"github.com/manuelarte/gotimeplus/localtime"
 )
 
-func TestLocalDateTime_NewFromEqual(t *testing.T) {
+func TestNewFromEqual(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -41,7 +41,7 @@ func TestLocalDateTime_NewFromEqual(t *testing.T) {
 	}
 }
 
-func TestLocalDateTime_Before(t *testing.T) {
+func TestBefore(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -81,7 +81,7 @@ func TestLocalDateTime_Before(t *testing.T) {
 	}
 }
 
-func TestLocalDateTime_After(t *testing.T) {
+func TestAfter(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
@@ -121,7 +121,7 @@ func TestLocalDateTime_After(t *testing.T) {
 	}
 }
 
-func TestLocalDateTime_Equal(t *testing.T) {
+func TestEqual(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {

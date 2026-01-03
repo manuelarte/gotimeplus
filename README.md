@@ -2,6 +2,7 @@
 
 [![Go](https://github.com/manuelarte/gotimeplus/actions/workflows/go.yml/badge.svg)](https://github.com/manuelarte/gotimeplus/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/manuelarte/gotimeplus)](https://goreportcard.com/report/github.com/manuelarte/gotimeplus)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=manuelarte_gotimeplus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=manuelarte_gotimeplus)
 ![coverage](https://raw.githubusercontent.com/manuelarte/gotimeplus/badges/.badges/main/coverage.svg)
 ![version](https://img.shields.io/github/v/release/manuelarte/gotimeplus)
 
@@ -76,7 +77,7 @@ Returns:
 - `tp`: The resulting `TimePeriod`.
 - `err`: An error if the inputs are invalid.
 
-> [!NOTE]  
+> [!NOTE]
 > The `TimePeriod` is built based on the overlapping period between the two dates.
 
 ```text
@@ -87,7 +88,7 @@ Resulting Time Period
 tp         ____|‾‾‾‾|___...
 ```
 
-> [!WARNING]  
+> [!WARNING]
 > Passing a zero value for `startTime` or `endTime` indicates an unbounded period on that side.
 
 ---
