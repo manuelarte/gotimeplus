@@ -110,26 +110,24 @@ func (tp startTimeEndTimePeriod) doesIntersect(comparePeriod TimePeriod) bool {
 }
 
 func (tp startTimeEndTimePeriod) intersect(comparePeriod TimePeriod) TimePeriod {
-	var start *time.Time
-	if tp.startTime == nil {
+	start := comparePeriod.StartTime()
+	switch {
+	case tp.startTime == nil:
 		start = comparePeriod.StartTime()
-	} else if comparePeriod.StartTime() == nil {
+	case comparePeriod.StartTime() == nil:
 		start = tp.startTime
-	} else if tp.startTime.After(*comparePeriod.StartTime()) {
+	case tp.startTime.After(*comparePeriod.StartTime()):
 		start = tp.startTime
-	} else {
-		start = comparePeriod.StartTime()
 	}
 
-	var end *time.Time
-	if tp.endTime == nil {
+	end := comparePeriod.EndTime()
+	switch {
+	case tp.endTime == nil:
 		end = comparePeriod.EndTime()
-	} else if comparePeriod.EndTime() == nil {
+	case comparePeriod.EndTime() == nil:
 		end = tp.endTime
-	} else if tp.endTime.Before(*comparePeriod.EndTime()) {
+	case tp.endTime.Before(*comparePeriod.EndTime()):
 		end = tp.endTime
-	} else {
-		end = comparePeriod.EndTime()
 	}
 
 	return startTimeEndTimePeriod{

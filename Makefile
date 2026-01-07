@@ -14,7 +14,10 @@ test: ## Run unit tests, alias: t
 	go test --cover -timeout=300s -parallel=16 ./...
 .PHONY: t test
 
-lint: tidy ## Format go code and run the fixer, alias: fmt
+fmt: tidy ## Format go code and run the fixer, alias: fmt
 	@golangci-lint fmt
+.PHONY: fmt
+
+lint: tidy ## lint
 	@golangci-lint run --fix ./...
 .PHONY: lint

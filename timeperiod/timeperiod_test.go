@@ -35,19 +35,19 @@ func TestGetDuration(t *testing.T) {
 			),
 			expected: 24 * time.Hour * 31,
 		},
-		"No end, max duration": {
-			timePeriod: Must(
-				ptr(time.Date(2022, 1, 1, 12, 0, 0, 0, time.UTC)),
-				nil,
-			),
-			expected: 1<<63 - 1,
-		},
 		"Less than one hour": {
 			timePeriod: Must(
 				ptr(time.Date(2022, 1, 1, 12, 0, 0, 0, time.UTC)),
 				ptr(time.Date(2022, 1, 1, 12, 59, 0, 0, time.UTC)),
 			),
 			expected: 59 * time.Minute,
+		},
+		"No end, max duration": {
+			timePeriod: Must(
+				ptr(time.Date(2022, 1, 1, 12, 0, 0, 0, time.UTC)),
+				nil,
+			),
+			expected: 1<<63 - 1,
 		},
 	}
 	for name, test := range tests {
@@ -170,83 +170,6 @@ func TestDoesIntersect(t *testing.T) {
 			),
 			expectedResult: false,
 		},
-		"Compare Period has no start time and ends before Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				nil,
-				yearMonthDay(2023, 1, 1),
-			),
-			expectedResult: false,
-		},
-		"Compare Period has no start time and ends between Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				nil,
-				yearMonthDay(2023, 2, 15),
-			),
-			expectedResult: true,
-		},
-		"Compare Period has no end time and starts before Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 1, 1),
-				nil,
-			),
-			expectedResult: true,
-		},
-		"Compare Period has no end time and starts on Base Period start": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				nil,
-			),
-			expectedResult: true,
-		},
-		"Compare Period has no end time and starts inside Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 2, 15),
-				nil,
-			),
-			expectedResult: true,
-		},
-		"Compare Period has no end time and starts on Base Period end": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 3, 1),
-				nil,
-			),
-			expectedResult: false,
-		},
-		"Compare Period has no end time and starts after Base Period end": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 4, 1),
-				nil,
-			),
-			expectedResult: false,
-		},
 		"Base Period has no end time and starts before Compare Period": {
 			basePeriod: Must(
 				yearMonthDay(2023, 2, 1),
@@ -334,6 +257,83 @@ func TestDoesIntersect(t *testing.T) {
 				nil,
 			),
 			expectedResult: true,
+		},
+		"Compare Period has no start time and ends before Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				nil,
+				yearMonthDay(2023, 1, 1),
+			),
+			expectedResult: false,
+		},
+		"Compare Period has no start time and ends between Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				nil,
+				yearMonthDay(2023, 2, 15),
+			),
+			expectedResult: true,
+		},
+		"Compare Period has no end time and starts before Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 1, 1),
+				nil,
+			),
+			expectedResult: true,
+		},
+		"Compare Period has no end time and starts on Base Period start": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				nil,
+			),
+			expectedResult: true,
+		},
+		"Compare Period has no end time and starts inside Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 2, 15),
+				nil,
+			),
+			expectedResult: true,
+		},
+		"Compare Period has no end time and starts on Base Period end": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 3, 1),
+				nil,
+			),
+			expectedResult: false,
+		},
+		"Compare Period has no end time and starts after Base Period end": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 4, 1),
+				nil,
+			),
+			expectedResult: false,
 		},
 	}
 
@@ -481,116 +481,17 @@ func TestIntersect(t *testing.T) {
 			expectedPeriod: Must(nil, nil),
 			expectedOk:     false,
 		},
-		"Compare Period has no end time and starts before Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
+		"Base Period no limits and compare period with limits": {
+			basePeriod: Infinite,
 			comparePeriod: Must(
 				yearMonthDay(2023, 1, 1),
-				nil,
+				yearMonthDay(2023, 2, 1),
 			),
 			expectedPeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			expectedOk: true,
-		},
-		"Compare Period has no end time and starts on Base Period start": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				nil,
-			),
-			expectedPeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			expectedOk: true,
-		},
-		"Compare Period has no end time and starts inside Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 2, 15),
-				nil,
-			),
-			expectedPeriod: Must(
-				yearMonthDay(2023, 2, 15),
-				yearMonthDay(2023, 3, 1),
-			),
-			expectedOk: true,
-		},
-		"Compare Period has no start time and ends on Base Period end": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				nil,
-				yearMonthDay(2023, 3, 1),
-			),
-			expectedPeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			expectedOk: true,
-		},
-		"Compare Period has no start time and ends before Base Period": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				nil,
 				yearMonthDay(2023, 1, 1),
-			),
-			expectedPeriod: Must(nil, nil),
-			expectedOk:     false,
-		},
-		"Compare Period has no start time and ends during Base Period": {
-			basePeriod: Must(
 				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				nil,
-				yearMonthDay(2023, 2, 15),
-			),
-			expectedPeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 2, 15),
 			),
 			expectedOk: true,
-		},
-		"Compare Period has no end time and starts on Base Period end": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 3, 1),
-				nil,
-			),
-			expectedPeriod: Must(nil, nil),
-			expectedOk:     false,
-		},
-		"Compare Period has no end time and starts after Base Period end": {
-			basePeriod: Must(
-				yearMonthDay(2023, 2, 1),
-				yearMonthDay(2023, 3, 1),
-			),
-			comparePeriod: Must(
-				yearMonthDay(2023, 4, 1),
-				nil,
-			),
-			expectedPeriod: Must(nil, nil),
-			expectedOk:     false,
 		},
 		"Base Period has no end time and starts before Compare Period": {
 			basePeriod: Must(
@@ -706,6 +607,117 @@ func TestIntersect(t *testing.T) {
 			),
 			expectedOk: true,
 		},
+		"Compare Period has no end time and starts before Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 1, 1),
+				nil,
+			),
+			expectedPeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			expectedOk: true,
+		},
+		"Compare Period has no end time and starts on Base Period start": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				nil,
+			),
+			expectedPeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			expectedOk: true,
+		},
+		"Compare Period has no end time and starts inside Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 2, 15),
+				nil,
+			),
+			expectedPeriod: Must(
+				yearMonthDay(2023, 2, 15),
+				yearMonthDay(2023, 3, 1),
+			),
+			expectedOk: true,
+		},
+		"Compare Period has no start time and ends on Base Period end": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				nil,
+				yearMonthDay(2023, 3, 1),
+			),
+			expectedPeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			expectedOk: true,
+		},
+		"Compare Period has no start time and ends before Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				nil,
+				yearMonthDay(2023, 1, 1),
+			),
+			expectedPeriod: Must(nil, nil),
+			expectedOk:     false,
+		},
+		"Compare Period has no start time and ends during Base Period": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				nil,
+				yearMonthDay(2023, 2, 15),
+			),
+			expectedPeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 2, 15),
+			),
+			expectedOk: true,
+		},
+		"Compare Period has no end time and starts on Base Period end": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 3, 1),
+				nil,
+			),
+			expectedPeriod: Must(nil, nil),
+			expectedOk:     false,
+		},
+		"Compare Period has no end time and starts after Base Period end": {
+			basePeriod: Must(
+				yearMonthDay(2023, 2, 1),
+				yearMonthDay(2023, 3, 1),
+			),
+			comparePeriod: Must(
+				yearMonthDay(2023, 4, 1),
+				nil,
+			),
+			expectedPeriod: Must(nil, nil),
+			expectedOk:     false,
+		},
 	}
 
 	for name, test := range tests {
@@ -716,6 +728,7 @@ func TestIntersect(t *testing.T) {
 			if ok != test.expectedOk {
 				t.Errorf("Expected: %v, Actual: %v", test.expectedOk, ok)
 			}
+
 			if !reflect.DeepEqual(test.expectedPeriod, actualResult) {
 				t.Errorf("Expected: %v, Actual: %v", test.expectedPeriod, actualResult)
 			}
