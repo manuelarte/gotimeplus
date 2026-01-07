@@ -13,7 +13,7 @@ func main() {
 	startTime := time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC)
 	endTime := startTime.Add(31 * 24 * time.Hour)
 
-	timePeriod, err := timeperiod.New(startTime, endTime)
+	timePeriod, err := timeperiod.New(&startTime, &endTime)
 	if err != nil {
 		panic(err)
 	}
@@ -21,7 +21,7 @@ func main() {
 
 	startTime2 := startTime.Add(14 * 24 * time.Hour)
 	endTime2 := endTime.Add(14 * 24 * time.Hour)
-	timePeriod2, err := timeperiod.New(startTime2, endTime2)
+	timePeriod2, err := timeperiod.New(&startTime2, &endTime2)
 	if err != nil {
 		panic(err)
 	}
