@@ -69,8 +69,8 @@ Create a `TimePeriod` instance by specifying a start time and an end time:
 
 > tp, err := timeperiod.New(startTime, endTime)
 
-- `startTime`: The beginning of the time period. Use `time.Time{}` for no lower limit.
-- `endTime`: The end of the time period. Use `time.Time{}` for no upper limit.
+- `startTime`: The beginning of the time period. Use `nil` for no lower limit.
+- `endTime`: The end of the time period. Use `nil` for no upper limit.
 
 Returns:
 
@@ -89,7 +89,7 @@ tp         ____|‾‾‾‾|___...
 ```
 
 > [!WARNING]
-> Passing a zero value for `startTime` or `endTime` indicates an unbounded period on that side.
+> Passing `nil` to `startTime` or `endTime` indicates an unbounded period on that side.
 
 ---
 
