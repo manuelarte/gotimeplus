@@ -1,5 +1,5 @@
 ---
-name: Go
+name: CI
 permissions:
   contents: write
 
@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        go: [oldstable, stable]
+        go: ["1.23", oldstable, stable]
         os: [ubuntu-latest, macos-latest]
     steps:
       - uses: actions/checkout@v6
