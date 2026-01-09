@@ -3,9 +3,11 @@ version: "2"
 
 formatters:
   enable:
+    # keep-sorted start
+    - gci
     - gofmt
     - gofumpt
-    - gci
+    # keep-sorted end
   settings:
     gofmt:
       simplify: true
@@ -23,6 +25,7 @@ formatters:
 linters:
   default: all
   disable:
+    # keep-sorted start
     - decorder # If applicable, to be checked in code reviews.
     - dupl # Too many false positives.
     - err113 # This leads to lots of unnecessary allocations and boilerplate.
@@ -51,8 +54,10 @@ linters:
     - wrapcheck # Too many false positives for return values defined in internal packages.
     - wsl # Deprecated, using wsl_v5
     - zerologlint # Not using zerolog.
+    # keep-sorted end
 
   settings:
+    # keep-sorted start
     cyclop:
       max-complexity: 30
       package-average: 10
@@ -159,6 +164,7 @@ linters:
       allow-first-in-block: true
       allow-whole-block: false
       branch-max-lines: 2
+    # keep-sorted end
 
   exclusions:
     presets:
