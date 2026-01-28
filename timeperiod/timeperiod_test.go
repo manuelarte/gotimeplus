@@ -5,6 +5,8 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestGetDuration(t *testing.T) {
@@ -726,10 +728,10 @@ func TestIntersect(t *testing.T) {
 
 			actualResult, ok := test.basePeriod.Overlaps(test.comparePeriod)
 			if ok != test.expectedOk {
-				t.Errorf("Expected: %v, Actual: %v", test.expectedOk, ok)
+				t.Fatalf("Expected: %v, Actual: %v", test.expectedOk, ok)
 			}
 
-			if !reflect.DeepEqual(test.expectedPeriod, actualResult) {
+			if !cmp.Equal(test.expectedPeriod, actualResult, cmp.AllowUnexported(startTimeEndTimePeriod{})) {
 				t.Errorf("Expected: %v, Actual: %v", test.expectedPeriod, actualResult)
 			}
 		})
@@ -850,12 +852,12 @@ func TestInputDatesSameValueAsGetters(t *testing.T) {
 	endTime := yearMonthDay(2026, time.February, 1)
 
 	timePeriod := Must(startTime, endTime)
-	if !reflect.DeepEqual(startTime, timePeriod.StartTime()) {
-		t.Fatalf("timePeriod.StartTime should be have the same value as original input")
+	if !cmp.Equal(startTime, timePeriod.StartTime()) {
+		t.Errorf("timePeriod.StartTime should be have the same value as original input")
 	}
 
-	if !reflect.DeepEqual(endTime, timePeriod.EndTime()) {
-		t.Fatalf("timePeriod.EndTime should be have the same value as original input")
+	if !cmp.Equal(endTime, timePeriod.EndTime()) {
+		t.Errorf("timePeriod.EndTime should be have the same value as original input")
 	}
 }
 
@@ -867,7 +869,7 @@ func TestStartTimeInputReassignedDoesNotAffect(t *testing.T) {
 	startTime = ptr(startTime.Add(60 * time.Hour))
 
 	if reflect.DeepEqual(startTime, timePeriod.StartTime()) {
-		t.Fatalf("original input has been modified, and then it should not be reflected in timePeriod.StartTime")
+		t.Errorf("original input has been modified, and then it should not be reflected in timePeriod.StartTime")
 	}
 }
 
