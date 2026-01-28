@@ -731,9 +731,8 @@ func TestIntersect(t *testing.T) {
 				t.Fatalf("Expected: %v, Actual: %v", test.expectedOk, ok)
 			}
 
-			if !cmp.Equal(test.expectedPeriod, actualResult, cmp.AllowUnexported(startTimeEndTimePeriod{})) {
-				t.Errorf("diff -want +got: %s",
-					cmp.Diff(test.expectedPeriod, actualResult, cmp.AllowUnexported(startTimeEndTimePeriod{})))
+			if diff := cmp.Diff(test.expectedPeriod, actualResult, cmp.AllowUnexported(startTimeEndTimePeriod{})); diff != "" {
+				t.Errorf("Overlaps() mismatch (-want +got):\n%s", diff)
 			}
 		})
 	}
