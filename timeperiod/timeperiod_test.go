@@ -732,7 +732,7 @@ func TestIntersect(t *testing.T) {
 			}
 
 			if !cmp.Equal(test.expectedPeriod, actualResult, cmp.AllowUnexported(startTimeEndTimePeriod{})) {
-				t.Errorf("Expected: %v, Actual: %v", test.expectedPeriod, actualResult)
+				t.Errorf("Diff: %s", cmp.Diff(test.expectedPeriod, actualResult, cmp.AllowUnexported(startTimeEndTimePeriod{})))
 			}
 		})
 	}
