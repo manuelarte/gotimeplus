@@ -58,7 +58,7 @@ func TestGetDuration(t *testing.T) {
 			got := test.timePeriod.Duration()
 
 			if test.want != got {
-				t.Errorf("Duration() = %v, wantOk %v", got, test.want)
+				t.Errorf("test.timePeriod.Duration() = %v, want %v", got, test.want)
 			}
 		})
 	}
@@ -344,7 +344,7 @@ func TestDoesIntersect(t *testing.T) {
 
 			_, got := test.basePeriod.Overlaps(test.comparePeriod)
 			if test.want != got {
-				t.Errorf("Overlaps = %v, wantOk %v", got, test.want)
+				t.Errorf("Overlaps = _, %v, want %v", got, test.want)
 			}
 		})
 	}
@@ -852,11 +852,11 @@ func TestInputDatesSameValueAsGetters(t *testing.T) {
 
 	timePeriod := Must(startTime, endTime)
 	if diff := cmp.Diff(startTime, timePeriod.StartTime()); diff != "" {
-		t.Errorf("timePeriod.StartTime() (-wantOk +got):\n%s", diff)
+		t.Errorf("timePeriod.StartTime() mismatch (-want +got):\n%s", diff)
 	}
 
 	if diff := cmp.Diff(endTime, timePeriod.EndTime()); diff != "" {
-		t.Errorf("timePeriod.EndTime() (-wantOk +got):\n%s", diff)
+		t.Errorf("timePeriod.EndTime() mismatch (-want +got):\n%s", diff)
 	}
 }
 
