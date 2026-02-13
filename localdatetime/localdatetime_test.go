@@ -86,28 +86,28 @@ func TestAfter(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
-		a, b   LocalDateTime
-		expect bool
+		a, b LocalDateTime
+		want bool
 	}{
 		"A is after B - different date": {
-			a:      New(2024, time.December, 31, 23, 59, 59, 0),
-			b:      New(2024, time.January, 1, 0, 0, 0, 0),
-			expect: true,
+			a:    New(2024, time.December, 31, 23, 59, 59, 0),
+			b:    New(2024, time.January, 1, 0, 0, 0, 0),
+			want: true,
 		},
 		"A is after B - same date, later time": {
-			a:      New(2024, time.July, 5, 18, 30, 0, 0),
-			b:      New(2024, time.July, 5, 18, 0, 0, 0),
-			expect: true,
+			a:    New(2024, time.July, 5, 18, 30, 0, 0),
+			b:    New(2024, time.July, 5, 18, 0, 0, 0),
+			want: true,
 		},
 		"A is equal to B": {
-			a:      New(2024, time.July, 5, 15, 45, 30, 0),
-			b:      New(2024, time.July, 5, 15, 45, 30, 0),
-			expect: false,
+			a:    New(2024, time.July, 5, 15, 45, 30, 0),
+			b:    New(2024, time.July, 5, 15, 45, 30, 0),
+			want: false,
 		},
 		"A is before B": {
-			a:      New(2023, time.January, 1, 0, 0, 0, 0),
-			b:      New(2024, time.January, 1, 0, 0, 0, 0),
-			expect: false,
+			a:    New(2023, time.January, 1, 0, 0, 0, 0),
+			b:    New(2024, time.January, 1, 0, 0, 0, 0),
+			want: false,
 		},
 	}
 
@@ -115,8 +115,9 @@ func TestAfter(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			if got := test.a.After(test.b); got != test.expect {
-				t.Errorf("After: expected %v, got %v", test.expect, got)
+			got := test.a.After(test.b)
+			if got != test.want {
+				t.Errorf("After = %t, want %t", got, test.want)
 			}
 		})
 	}
@@ -126,28 +127,28 @@ func TestEqual(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
-		a, b   LocalDateTime
-		expect bool
+		a, b LocalDateTime
+		want bool
 	}{
 		"Equal datetime": {
-			a:      New(2024, time.July, 5, 12, 0, 0, 0),
-			b:      New(2024, time.July, 5, 12, 0, 0, 0),
-			expect: true,
+			a:    New(2024, time.July, 5, 12, 0, 0, 0),
+			b:    New(2024, time.July, 5, 12, 0, 0, 0),
+			want: true,
 		},
 		"Different nanosecond": {
-			a:      New(2024, time.July, 5, 12, 0, 0, 1),
-			b:      New(2024, time.July, 5, 12, 0, 0, 0),
-			expect: false,
+			a:    New(2024, time.July, 5, 12, 0, 0, 1),
+			b:    New(2024, time.July, 5, 12, 0, 0, 0),
+			want: false,
 		},
 		"Different second": {
-			a:      New(2024, time.July, 5, 12, 0, 1, 0),
-			b:      New(2024, time.July, 5, 12, 0, 0, 0),
-			expect: false,
+			a:    New(2024, time.July, 5, 12, 0, 1, 0),
+			b:    New(2024, time.July, 5, 12, 0, 0, 0),
+			want: false,
 		},
 		"Different date": {
-			a:      New(2023, time.July, 5, 12, 0, 0, 0),
-			b:      New(2024, time.July, 5, 12, 0, 0, 0),
-			expect: false,
+			a:    New(2023, time.July, 5, 12, 0, 0, 0),
+			b:    New(2024, time.July, 5, 12, 0, 0, 0),
+			want: false,
 		},
 	}
 
@@ -155,8 +156,9 @@ func TestEqual(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			if got := test.a.Equal(test.b); got != test.expect {
-				t.Errorf("Equal: expected %v, got %v", test.expect, got)
+			got := test.a.Equal(test.b)
+			if got != test.want {
+				t.Errorf("Equal = %t, want %v", got, test.want)
 			}
 		})
 	}
