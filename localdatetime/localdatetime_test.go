@@ -14,7 +14,7 @@ func TestNewFromEqual(t *testing.T) {
 	tests := map[string]struct {
 		localDateTime LocalDateTime
 		other         LocalDateTime
-		expected      bool
+		want          bool
 	}{
 		"same local date time": {
 			localDateTime: NewFrom(
@@ -25,17 +25,17 @@ func TestNewFromEqual(t *testing.T) {
 				localdate.New(2000, 1, 1),
 				localtime.New(0, 0, 0, 0),
 			),
-			expected: true,
+			want: true,
 		},
 	}
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			actual := test.localDateTime.Equal(test.other)
+			got := test.localDateTime.Equal(test.other)
 
-			if test.expected != actual {
-				t.Errorf("\nExpected: %v\nActual: %v", test.expected, actual)
+			if test.want != got {
+				t.Errorf("test.localDateTime.Equal = %v, want %v", got, test.want)
 			}
 		})
 	}
@@ -45,28 +45,28 @@ func TestBefore(t *testing.T) {
 	t.Parallel()
 
 	tests := map[string]struct {
-		a, b   LocalDateTime
-		expect bool
+		a, b LocalDateTime
+		want bool
 	}{
 		"A is before B - different date": {
-			a:      New(2023, time.December, 31, 23, 59, 59, 0),
-			b:      New(2024, time.January, 1, 0, 0, 0, 0),
-			expect: true,
+			a:    New(2023, time.December, 31, 23, 59, 59, 0),
+			b:    New(2024, time.January, 1, 0, 0, 0, 0),
+			want: true,
 		},
 		"A is before B - same date, earlier time": {
-			a:      New(2024, time.July, 5, 10, 0, 0, 0),
-			b:      New(2024, time.July, 5, 11, 0, 0, 0),
-			expect: true,
+			a:    New(2024, time.July, 5, 10, 0, 0, 0),
+			b:    New(2024, time.July, 5, 11, 0, 0, 0),
+			want: true,
 		},
 		"A is equal to B": {
-			a:      New(2024, time.July, 5, 15, 45, 30, 0),
-			b:      New(2024, time.July, 5, 15, 45, 30, 0),
-			expect: false,
+			a:    New(2024, time.July, 5, 15, 45, 30, 0),
+			b:    New(2024, time.July, 5, 15, 45, 30, 0),
+			want: false,
 		},
 		"A is after B": {
-			a:      New(2025, time.January, 1, 0, 0, 0, 0),
-			b:      New(2024, time.December, 31, 23, 59, 59, 999),
-			expect: false,
+			a:    New(2025, time.January, 1, 0, 0, 0, 0),
+			b:    New(2024, time.December, 31, 23, 59, 59, 999),
+			want: false,
 		},
 	}
 
@@ -74,8 +74,9 @@ func TestBefore(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			if got := test.a.Before(test.b); got != test.expect {
-				t.Errorf("Before: expected %v, got %v", test.expect, got)
+			got := test.a.Before(test.b)
+			if got != test.want {
+				t.Errorf("test.a.Before = %t, want %t", got, test.want)
 			}
 		})
 	}
