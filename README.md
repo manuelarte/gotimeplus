@@ -1,8 +1,6 @@
 # 🕐GoTime Plus(+)
 
 [![CI](https://github.com/manuelarte/gotimeplus/actions/workflows/ci.yml/badge.svg)](https://github.com/manuelarte/gotimeplus/actions/workflows/ci.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/manuelarte/gotimeplus)](https://goreportcard.com/report/github.com/manuelarte/gotimeplus)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=manuelarte_gotimeplus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=manuelarte_gotimeplus)
 ![coverage](https://raw.githubusercontent.com/manuelarte/gotimeplus/badges/.badges/main/coverage.svg)
 ![version](https://img.shields.io/github/v/release/manuelarte/gotimeplus)
 
