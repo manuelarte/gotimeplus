@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/manuelarte/gotimeplus/compare/v0.1.0...v0.2.0) (2026-09-24)
+
+
+### Features
+
+* add yearmonth ([#38](https://github.com/manuelarte/gotimeplus/issues/38)) ([28ea365](https://github.com/manuelarte/gotimeplus/commit/28ea365e965999cb1d572e5920ef621c24446f86))
+
 ## [0.1.0](https://github.com/manuelarte/gotimeplus/compare/v0.0.4...v0.1.0) (2025-07-13)
 
 
