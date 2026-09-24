@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// ErrEndTimeBeforeStartTime is returned when the end time is before the start time.
 var ErrEndTimeBeforeStartTime = errors.New("end time before start time")
 
 var (
@@ -18,7 +19,6 @@ var (
 )
 
 type (
-
 	// TimePeriod to track a Period of Time. It's composed of a StartTime and an EndTime
 	// If StartTime is nil, then it means the beginning of time.
 	// If EndTime is nil, then it means the end of time.
@@ -38,8 +38,8 @@ type (
 	}
 )
 
-// New Creates a new time period based on a start time and an end time
-// Returns either the time period of an error is the end time is before the start time.
+// New Creates a new TimePeriod based on a start time and an end time
+// Returns either the time period of an error if the end time is before the start time.
 func New(startTime, endTime *time.Time) (TimePeriod, error) {
 	if (startTime != nil && endTime != nil) && endTime.Before(*startTime) {
 		return startTimeEndTimePeriod{}, ErrEndTimeBeforeStartTime
@@ -72,6 +72,7 @@ func (tp startTimeEndTimePeriod) Duration() time.Duration {
 	return tp.endTime.Sub(*tp.startTime)
 }
 
+// EndTime Returns the end time of this period.
 func (tp startTimeEndTimePeriod) EndTime() *time.Time {
 	return tp.endTime
 }

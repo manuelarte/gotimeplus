@@ -18,6 +18,6 @@ fmt: tidy ## Format go code and run the fixer, alias: fmt
 	@golangci-lint fmt
 .PHONY: fmt
 
-lint: tidy ## lint
+lint: fmt ## lint
 	@golangci-lint run --fix ./...
 .PHONY: lint

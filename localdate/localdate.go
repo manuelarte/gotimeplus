@@ -7,6 +7,7 @@ import "time"
 var _ LocalDate = new(localDate)
 
 type (
+	// LocalDate represents a date, without a timezone.
 	LocalDate interface {
 		// After reports whether the LocalDate is after the given other LocalDate.
 		After(other LocalDate) bool
@@ -37,7 +38,7 @@ func New(year int, month time.Month, day int) LocalDate {
 	}
 }
 
-// FromTime converts time.Time to LocalDate.
+// FromTime converts [time.Time] to LocalDate.
 func FromTime(t time.Time) LocalDate {
 	return New(t.Year(), t.Month(), t.Day())
 }
