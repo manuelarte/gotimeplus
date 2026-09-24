@@ -12,6 +12,7 @@ import (
 var _ LocalDateTime = new(localDateTime)
 
 type (
+	// LocalDateTime represents a date + time, without a timezone.
 	LocalDateTime interface {
 		// After reports whether the LocalDateTime is after the given other LocalDateTime.
 		After(other LocalDateTime) bool
@@ -29,6 +30,7 @@ type (
 	}
 )
 
+// New LocalDateTime from year, month, day, hour, minutes, seconds, and nanoseconds.
 func New(year int, month time.Month, day, hour, minutes, sec, nsec int) LocalDateTime {
 	return NewFrom(localdate.New(year, month, day), localtime.New(hour, minutes, sec, nsec))
 }
@@ -41,7 +43,7 @@ func NewFrom(ld localdate.LocalDate, lt localtime.LocalTime) LocalDateTime {
 	}
 }
 
-// FromTime converts time.Time to LocalDate.
+// FromTime converts [time.Time] to LocalDate.
 func FromTime(t time.Time) LocalDateTime {
 	return NewFrom(
 		localdate.FromTime(t),

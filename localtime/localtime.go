@@ -11,6 +11,7 @@ import (
 var _ LocalTime = new(localTime)
 
 type (
+	// LocalTime represents a time, without a timezone.
 	LocalTime interface {
 		// After reports whether the LocalDate is after the given other LocalDate.
 		After(other LocalTime) bool
@@ -31,7 +32,7 @@ type (
 	}
 )
 
-// New LocalTime from hours, minutes, seconds and nanoseconds.
+// New LocalTime from hours, minutes, seconds, and nanoseconds.
 func New(hour, minutes, sec, nsec int) LocalTime {
 	return &localTime{
 		hour: hour,
