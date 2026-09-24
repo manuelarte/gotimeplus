@@ -11,6 +11,14 @@ type (
 		AddMonths(int) YearMonth
 		// AddYears Returns a new YearMonth with the specified number of years added.
 		AddYears(int) YearMonth
+		// After Returns true if this YearMonth is after the specified YearMonth.
+		After(YearMonth) bool
+		// Before Returns true if this YearMonth is before the specified YearMonth.
+		Before(YearMonth) bool
+		// Compare compares this YearMonth with the specified YearMonth.
+		Compare(YearMonth) int
+		// Equal returns true if this YearMonth equals the specified YearMonth.
+		Equal(YearMonth) bool
 		// Year Get the year and month.
 		Year() int
 		// Month Get the month.
@@ -33,7 +41,16 @@ func New(year int, month time.Month) YearMonth {
 
 // AddMonths Returns a new YearMonth with the specified number of months added.
 func (ym yearMonth) AddMonths(n int) YearMonth {
-	return New(ym.year, time.Month(int(ym.month)+n))
+	totalMonths := ym.year*12 + int(ym.month) - 1 + n
+	year := totalMonths / 12
+
+	month := totalMonths % 12
+	if month < 0 {
+		year--
+		month += 12
+	}
+
+	return New(year, time.Month(month+1))
 }
 
 // AddYears Returns a new YearMonth with the specified number of years added.
