@@ -851,14 +851,12 @@ func TestInputDatesSameValueAsGetters(t *testing.T) {
 	endTime := yearMonthDay(2026, time.February, 1)
 
 	timePeriod := Must(startTime, endTime)
-	//nolint:testcomments // bug
 	if diff := cmp.Diff(startTime, timePeriod.StartTime()); diff != "" {
-		t.Errorf("timePeriod.StartTime() mismatch (-want +got):\n%s", diff)
+		t.Errorf("Must() mismatch (-want +got):\n%s", diff)
 	}
 
-	//nolint:testcomments // bug
 	if diff := cmp.Diff(endTime, timePeriod.EndTime()); diff != "" {
-		t.Errorf("timePeriod.EndTime() mismatch (-want +got):\n%s", diff)
+		t.Errorf("Must() mismatch (-want +got):\n%s", diff)
 	}
 }
 
