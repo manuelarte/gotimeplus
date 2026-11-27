@@ -852,11 +852,11 @@ func TestInputDatesSameValueAsGetters(t *testing.T) {
 
 	timePeriod := Must(startTime, endTime)
 	if diff := cmp.Diff(startTime, timePeriod.StartTime()); diff != "" {
-		t.Errorf("timePeriod.StartTime() mismatch (-want +got):\n%s", diff)
+		t.Errorf("Must() mismatch (-want +got):\n%s", diff)
 	}
 
 	if diff := cmp.Diff(endTime, timePeriod.EndTime()); diff != "" {
-		t.Errorf("timePeriod.EndTime() mismatch (-want +got):\n%s", diff)
+		t.Errorf("Must() mismatch (-want +got):\n%s", diff)
 	}
 }
 

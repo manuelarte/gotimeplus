@@ -61,6 +61,13 @@ linters:
 
   settings:
     # keep-sorted start
+    custom:
+      structinit:
+        type: "module"
+        description: Ensure struct's field initialisation order matches struct's field declaration.
+      testcomments:
+        type: "module"
+        description: Ensure tests follow https://go.dev/wiki/TestComments
     cyclop:
       max-complexity: 30
       package-average: 10
@@ -93,7 +100,7 @@ linters:
     exhaustive:
       check:
         - switch
-        - map
+        - mapliteral
     exhaustruct:
       exclude:
         - ^os/exec.Cmd$

@@ -32,6 +32,7 @@ type (
 		Overlaps(other TimePeriod) (TimePeriod, bool)
 	}
 
+	//go:structinit
 	startTimeEndTimePeriod struct {
 		startTime *time.Time
 		endTime   *time.Time

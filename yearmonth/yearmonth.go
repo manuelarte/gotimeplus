@@ -25,6 +25,7 @@ type (
 		Month() time.Month
 	}
 
+	//go:structinit
 	yearMonth struct {
 		year  int
 		month time.Month

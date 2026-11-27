@@ -22,6 +22,7 @@ type (
 		Year() int
 	}
 
+	//go:structinit
 	localDate struct {
 		year  int
 		month time.Month
