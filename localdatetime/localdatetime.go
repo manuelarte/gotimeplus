@@ -24,6 +24,7 @@ type (
 		ToTime(loc *time.Location) time.Time
 	}
 
+	//go:structinit
 	localDateTime struct {
 		ld localdate.LocalDate
 		lt localtime.LocalTime
